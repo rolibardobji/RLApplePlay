@@ -18,7 +18,7 @@ enum RLApplePayError: Error {
   static var invalidCouponCodeError: RLApplePayError = .invalidCouponCode("Invalid coupon code")
 }
 
-final class RLApplePay: NSObject {
+public final class RLApplePay: NSObject {
   typealias ApplePayStatus = (canMakePayments: Bool, canSetupCards: Bool)
   
   static let supportedNetworks: [PKPaymentNetwork] = [
@@ -48,10 +48,10 @@ final class RLApplePay: NSObject {
 }
 
 extension RLApplePay: PKPaymentAuthorizationControllerDelegate {
-  func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
+  public func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
   }
   
-  func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController,
+  public func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController,
                                       didChangeCouponCode couponCode: String) async -> PKPaymentRequestCouponCodeUpdate {
     
     guard let couponCode = Double(couponCode) else {
